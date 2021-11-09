@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/base_gnb.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css" />
+</head>
+<body>
+    {% extends 'base_gnb.html' %}
+    {% block content %}
+    <div class = "wrap02">
+        <div class = "login_form">
+            <h1>Login</h1>
+            <form action = "{% url 'login' %}" method="POST" class = "login_form">
+            {% csrf_token %}
+            <div calss = "newform_wrap">
+                <label for="id_username">아이디</label><br>
+                <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="100" required="" id="id_username">
+            </div>
+            <div calss = "newform_wrap">
+                <label for="id_password">비밀번호</label><br>
+                <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+            </div calss = "newform_wrap">
+            <div><a href="{% url 'register' %}" class="signup_text">회원이 아니세요? 회원가입하세요.</a></div>
+            <button type="submit">로그인</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+</body>
+</html>

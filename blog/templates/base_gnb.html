@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>base_gnb</title>
+</head>
+<body>
+  {%load static%}
+  <div class = "wrap01">
+    <div class = "top_gnb">
+      <ul>
+        <div><a href="{% url 'home' %}"><img class = "logo" src="{%static 'interweaver01.png'%}" alt="logo"></a></div>
+      </ul>
+      <ul>
+        {% if not user.is_authenticated %}
+          <li class="nav-item"><a href="{% url 'login' %}">Login</a></li>
+          <li class="nav-item"><a href="{% url 'register' %}">Signup</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="nav-item"><a href="{% url 'mypage' %}">MyPage</a></li>
+        {% endif %}
+      </ul>
+      <ul>
+        <li class="nav-item"><a href="{% url 'all_list' %}">전체 글 목록</a></li>
+        <li class="nav-item"><a href="{% url 'cate01' %}">인터뷰어 구하기</a></li>
+        <li class="nav-item"><a href="{% url 'cate02' %}">인터뷰이 구하기</a></li>
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a href="{% url 'new' %}">글쓰기</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색결과</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/base_gnb.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/search.css" />
+</head>
+<body>
+    {% extends 'base_gnb.html' %}
+    {% block content %}
+    <div class = "wrap02">
+        <div><p>"{{keyword}}"에 대한 검색결과</p></div>
+    </div>
+    <div class = "wrap_form">
+      <form class = "search" method='POST' action="{% url 'search' %}">
+        {% csrf_token %}
+        <input type="text" name="keyword" placeholder="현재게시판에서 태그로 검색">
+        <button class="button" type="submit">검색</button>
+      </form>
+    </div>
+    <div class = "wrap03">
+        <div>
+          {% for blog in blogs.all %}
+          <a href="{% url 'detail' blog.id %}">
+            <div class = "blog_post" >
+              <div class = "top_line"></div>
+              <p class = "blog_info">{{ blog.pub_date }}<br>
+                {{ blog.category }}</p>
+              <h1 class = "blog_title">{{ blog.title}}</h1>
+              <div class = "image_wrap">
+                {% if blog.image %}
+                <img class="blog_image" src="{{ blog.image.url }}">
+                {% endif %}
+                {% if not blog.image %}
+                <div>No Image</div>
+                {% endif %}
+              </div>
+              <p class = "blog_sum">{{ blog.summary }}...</p>
+              <a class = "more" href="{% url 'detail' blog.id %}">...more</a>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+    </div>
+    <br>
+    {% endblock %}
+</body>
+</html>

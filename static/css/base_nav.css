@@ -1,0 +1,42 @@
+.nav_wrap {
+  margin-top: 30px;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.nav_card {
+  overflow: hidden;
+}
+.nav_card > a {
+  float: left;
+  width: 140px;
+  height: 90px;
+  opacity: 0.5;
+  backdrop-filter: blur(7px);
+}
+.nav_card > a:nth-child(1) {
+  background-color: rgba(144, 214, 243, 0.8);
+}
+.nav_card > a:nth-child(2) {
+  background-color: rgb(88, 163, 191, 0.8);
+}
+.nav_card > a:nth-child(3) {
+  background-color: rgb(236, 172, 168, 0.8);
+}
+.nav_card > a:nth-child(4) {
+  background-color: rgb(255, 213, 123, 0.8);
+}
+.nav_card > a > p {
+  padding: 16px;
+  font-family: "Poppins";
+  font-size: 17px;
+  line-height: 25px;
+  font-weight: 300;
+  color: rgba(36, 36, 36, 0.8);
+}
+.nav_card > a:hover {
+  opacity: 1;
+  transition-duration: 0.7s;
+}

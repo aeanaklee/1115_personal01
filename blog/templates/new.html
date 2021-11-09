@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>새로운 글 쓰기</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/base_gnb.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/new.css" />
+</head>
+<body>
+    {% extends 'base_gnb.html' %}
+    {% block content %}
+    <div class = "wrap02">
+        <div class = "new_form">
+            <h1>New Post</h1>
+            <form class = "new_form02" action = "{% url 'create' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class = "newform_wrap">
+                <label for="id_category">카테고리</label><br>
+                <select name="category" required="" id="id_category">
+                    <option value="" selected="">---------</option>
+                    <option value="1">인터뷰어 구하기</option>
+                    <option value="2">인터뷰이 구하기</option>
+                </select>
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_title">제목</label><br>
+                <input type="text" name="title" maxlength="200" required="" id="id_title">
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_body">본문</label><br>
+                <textarea name="body" cols="40" rows="10" required="" id="id_body"></textarea>
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_image">해시태그</label><br>
+                <input type="text" name="hashtags" placeholder="해시태그 ,로 구분">
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_image">이미지</label><br>
+                <input class = "new_image" type="file" name="image" accept="image/*" id="id_image">
+            </div>
+            <button type="submit">제출</button>
+        </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

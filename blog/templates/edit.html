@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 수정하기</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/base_gnb.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/edit.css" />
+</head>
+<body>
+    {% extends 'base_gnb.html' %}
+    {% block content %}
+    <div class = "wrap02">
+        <div class = edit_form>
+            <h1>Editing Blog</h1>
+            <form action = "{% url 'update' blog.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class = "newform_wrap">
+                <label for="id_title">제목</label><br>
+                <input type = "text" name = "title" value = "{{ blog.title }}">
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_title">본문</label><br>
+                <textarea name = "body" id = "" cols = "30" rows = "20" >{{ blog.body }}</textarea>
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_image">이미지</label><br>
+                <input class = "new_image" type="file" type="img" name="image">
+            </div>
+            <button type = "submit">제출</button>
+        </div>
+    </div>
+    {% endblock %}
+</form>
+</body>
+</html>

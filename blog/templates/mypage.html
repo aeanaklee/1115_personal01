@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mypage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/base_gnb.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/mypage.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/base_nav.css" />
+</head>
+<body>
+    {% extends 'base_gnb.html' %}
+    {% block content %}
+    <div class = "wrap02">
+        <div>
+            <p>{{user.username}}님 환영합니다!</p>
+            <p>회원정보 수정과 내가 쓴 글, 즐겨찾기 한 글들을 확인할 수 있습니다.</p>  
+        </div>
+        <div class = "user_info">
+            <h1>User Info</h1>
+            {% if user.is_authenticated %}
+            <p>아이디</p>
+            <p>{{ user.username }}</p>
+            <p>닉네임</p>
+            <p>{{ user.nickname }}</p>
+            <p>위치</p>
+            <p>{{ user.location }}</p>
+            <div><a href="{% url 'edit_user' %}">내 정보 수정하기</a></div>
+            {% endif %}
+        </div>
+    </div>
+    <div class = "header"><h1>내가 쓴 글</h1></div>
+    <div class = "wrap03">
+        <div>
+            {% for myblog in myblogs.all %}
+            <a href="{% url 'detail' myblog.id %}">
+                <div class = "blog_post" >
+                    <div class = "top_line"></div>
+                    <p class = "blog_info">{{ myblog.pub_date }}<br>
+                    {{ myblog.category }}</p>
+                <h1 class = "blog_title">{{ myblog.title }}</h1>
+                <p class = "blog_sum">{{ myblog.summary }}...</p>
+                <a class = "more" href="{% url 'detail' myblog.id %}">...more</a>
+                </div>
+            </a>
+            {% empty %}
+            <div>작성한 글이 없습니다.</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class = "header"><h1>즐겨찾기 한 글</h1></div>
+    <div class = "wrap03">
+        <div>
+            {% for user_like in user_likes.all  %}
+            <a href="{% url 'detail' user_like.id %}">
+                <div class = "blog_post" >
+                    <div class = "top_line"></div>
+                    <p class = "blog_info">{{ user_like.pub_date }}<br>
+                    {{ user_like.category }}</p>
+                <h1 class = "blog_title">{{ user_like.title}}</h1>
+                <p class = "blog_sum">{{ user_like.summary }}...</p>
+                <a class = "more" href="{% url 'detail' user_like.id %}">...more</a>
+                </div>
+            </a>
+            {% empty %}
+            <div>즐겨찾기 한 글이 없습니다.</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class = "nav_wrap">
+        <div class = "nav_card">
+            <a href="{% url 'all_list' %}"><p>All Post</p></a>
+            <a href="{% url 'cate01' %}"><p>Interviewer</p></a>
+            <a href="{% url 'cate02' %}"><p>Interviewee </p></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'new' %}"><p>Write</p></a>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/base_gnb.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/home01.css" />
+  </head>
+<body>
+  {% extends 'base_gnb.html' %}
+  {%load static%}
+  {% block content %}
+  <div class = "wrap02">
+    <div><img class = "logo_photo" src="{%static 'logo_type.png'%}" alt="logo_photo" /></div>
+    <div><img class = "main_photo" src="{%static 'back03.png'%}" alt="main_photo" /></div>
+  </div>
+  <div class = "wrap_form">
+    <form class = "search" method='POST' action="{% url 'search' %}">
+      {% csrf_token %}
+      <input type="text" name="keyword" placeholder="전체게시판에서 태그로 검색">
+      <button class="button" type="submit">검색</button>
+    </form>
+  </div>
+  <div class = "wrap03">
+    <div><p>원하는 분야의 인터뷰이,<br>인터뷰어를 구할 수 있는곳</p></div>
+    <div>
+      <p>
+        인터위버는 과제수행이나 자료조사를 위해서 인터뷰 대상자를 구하는 인터뷰어,<br>
+        혹은 자기홍보를 위해 인터뷰 참여를 원하는 인터뷰이들을<br>탐색할 수 있는 웹사이트입니다.
+      </p>
+    </div>
+  </div>
+  <div class = "empty_div">
+    <div>ⓒ 2021. interweaver all rights reserved.</div>
+  </div>
+  {%endblock%}
+</body>
+</html>

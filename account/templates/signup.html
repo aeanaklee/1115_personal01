@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/base_gnb.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css" />
+</head>
+<body>
+    {% extends 'base_gnb.html' %}
+    {% block content %}
+    <div class = "wrap02">
+        <div class = "singup_form">
+            <h1>Sign Up</h1>
+            <form action = "{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <div class = "newform_wrap">
+                <label for="id_username">아이디</label><br>
+                <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+                <div class="helptext01">150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_password1">비밀번호</label><br>
+                <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+            </div>
+            <div class = "newform_wrap">
+                <ul class="helptext02">
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password can’t be a commonly used password.</li>
+                    <li>Your password can’t be entirely numeric.</li>
+                </ul>
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_password2">비밀번호 재입력</label><br>
+                <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                <div class="helptext01">Enter the same password as before, for verification.</div>
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_nickname">닉네임</label><br>
+                <input type="text" name="nickname" maxlength="100" required="" id="id_nickname">
+            </div>
+            <div class = "newform_wrap">
+                <label for="id_location">위치</label><br>
+                <input type="text" name="location" maxlength="200" required="" id="id_location">
+            </div>
+            <button type="submit">회원가입</button>
+        </div>
+    </div>
+    {% endblock %}
+</form>
+</body>
+</html>
